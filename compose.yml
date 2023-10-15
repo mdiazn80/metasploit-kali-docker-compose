@@ -1,0 +1,20 @@
+version: '3.8'
+services:
+  kali-msf: 
+    build: 
+      context: kali/
+      args:
+        KALI_VERSION: $KALI_VERSION
+    hostname: kali-msf
+    container_name: kali-msf
+    volumes:
+      - type: bind
+        source: ./volume
+        target: /share
+    networks:
+      - kali-network
+    privileged: true
+
+networks:
+  kali-network:
+    driver: bridge
